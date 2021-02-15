@@ -4,8 +4,6 @@
 
 #include <iostream>
 #include <chrono>
-#include <fstream>
-#include <string>
 
 class Timer
 {
@@ -32,30 +30,23 @@ public:
     }
 };
 
-//Is the number prime? Using the list of primes already known
+extern std:list
+
 bool isPrime(int test)
 {
-    return 0;
+    //Is the number prime? Using the list of primes already known
 }
 
 int main()
 {
+    std::cout << "Hello World!\n";
+
     Timer t;
+
     //start of timing
 
-    std::string line;
-    std::ifstream myfile("primes1.txt");
-    while (getline(myfile, line))
-    {
-        std::cout << line << '\n';
-    }
-
-
-
-
-
-
     //end of timing
+
     std::cout << "Time elapsed: " << t.elapsed() << " seconds.";
 
     return 0;
