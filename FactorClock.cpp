@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <string>
 
 class Timer
@@ -32,31 +33,88 @@ public:
     }
 };
 
-//Is the number prime? Using the list of primes already known
-bool isPrime(int test)
-{
-    return 0;
-}
-
 int main()
 {
-    Timer t;
-    //start of timing
+    /*
+    //defines if file is just 1 million or all 10 million
+    //false == just 1 million
+    //true == all 10 million
+
+    bool primeFile{ false };
+
+    //name of the prime file to use
+    std::string primeFileName{};
+
+    if (primeFile)
+    {
+        //primes up to 10 million
+        primeFileName = "primes1.txt";
+
+    }
+    else
+    {
+        //primes up to 1 million
+        primeFileName = "primes2.txt";
+    }
 
     std::string line;
-    std::ifstream myfile("primes1.txt");
-    while (getline(myfile, line))
+    std::ifstream myfile(primeFileName);
+        while (getline(myfile, line))
     {
         std::cout << line << '\n';
     }
+    */
 
+    long long bigNumber{20210217041919};
+    long long userInput{};
+    
+    std::cout << "Enter a number. Enter 0 for default (14 digits)";
+    std::cin >> userInput;
+    if (userInput != 0)
+    {
+        bigNumber = userInput;
+    }
 
+    Timer t;
+    //start of timing
 
-
+    while (bigNumber != 1)
+    {
+    bigNumberReset:
+        if ((bigNumber % 2) == 0)
+        {
+            std::cout << "  " << 2 << '\n';
+            bigNumber /= 2;
+        }
+        else
+        {
+            long long testNumber{ 3 };
+            while (true)
+            {
+                if ((bigNumber % testNumber) == 0)
+                {
+                    std::cout << "  " << testNumber << '\n';
+                    bigNumber /= testNumber;
+                    break;
+                }
+                else
+                {
+                    testNumber += 2;
+                }
+            }
+        }
+    }
+    std::cout << "done";
+    
 
 
     //end of timing
-    std::cout << "Time elapsed: " << t.elapsed() << " seconds.";
+    std::cout << "Time elapsed: " << t.elapsed() << " seconds.\n";
+
+    //Just wait for the input. This is a dummy variable used to make the program
+    //wait for the execution to finish
+    int justWaitForTheInput;
+    std::cin >> justWaitForTheInput;
 
     return 0;
 }
