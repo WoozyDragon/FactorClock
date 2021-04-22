@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <ctime>
 
 class Timer
 {
@@ -65,22 +66,31 @@ int main()
     }
     */
 
-    long long bigNumber{20210217041919};
+    std::time_t t2 = std::time(0);
+
+    long long bigNumber{t2};
     long long userInput{};
     
-    std::cout << "Enter a number. Enter 0 for default (14 digits)";
+    std::cout << "Enter a positive integer. Enter 0 for default (current unix time)";
     std::cin >> userInput;
+    if (userInput < 0)
+    {
+        std::cout << "Unable to factor negative numbers at this time "
+            << "please input a postive integer\n";
+        return -1;
+    }
     if (userInput != 0)
     {
         bigNumber = userInput;
     }
+
+    std::cout << "Input = " << bigNumber << '\n';
 
     Timer t;
     //start of timing
 
     while (bigNumber != 1)
     {
-    bigNumberReset:
         if ((bigNumber % 2) == 0)
         {
             std::cout << "  " << 2 << '\n';
@@ -104,10 +114,8 @@ int main()
             }
         }
     }
-    std::cout << "done";
+    std::cout << "done\n";
     
-
-
     //end of timing
     std::cout << "Time elapsed: " << t.elapsed() << " seconds.\n";
 
