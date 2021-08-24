@@ -51,10 +51,15 @@ int c_arrayIndex{ 0 };
 
 void newFactor()
 {  
+
     while (true) {
-        if (times[c_arrayIndex] >= std::time(0) + 18)
+        auto start = std::chrono::system_clock::now();
+
+        if (bigNumber >= std::time(0) + 15)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+            std::cout << "skip :: " << bigNumber;
+            continue;
         }
 
         times[c_arrayIndex] = bigNumber;
@@ -65,6 +70,10 @@ void newFactor()
         if (c_arrayIndex >= 20) c_arrayIndex = 0;
 
         ++bigNumber;
+
+        auto end = std::chrono::system_clock::now();
+        std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count();
+        std::cout << " :: " << bigNumber << '\n';
     }
 }
 
@@ -73,13 +82,44 @@ void printFactors() {
         auto start = std::chrono::system_clock::now();
 
         auto c_time = std::time(0);
+        std::cout << "aaa  " << c_time << '\n';
+        
+        int n = sizeof(times) / sizeof(times[0]);
+        auto itr = std::find(times, times + n, c_time);
+        int c_index{ 0 };
 
-        int x = std::distance(times, std::find(times, times + 20, c_time));
+        if (itr == std::end(times))
+        {
+            std::cout << "FAIL";
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            for (long long val : times)
+            {
+                std::cout << val << '\n';
+            }
+            std::cout << std::endl;
+            continue;
+        }
+        else {
+            c_index = std::distance(times, itr);;
+        }
 
-        std::cout << "Current Time is " << times[x] << '\n';
+        //int c_index = std::distance(times, std::find(times, times + 20, c_time));
+        std::cout << "xxx  " << c_index << '\n';
+
+        if (times[c_index] < 100)
+        {
+            for (long long val : times)
+            {
+                std::cout << val << '\n';
+            }
+            std::cout << std::endl;
+            //std::cout << values[x];
+        }
+
+        std::cout << "Current Time is " << times[c_index] << '\n';
         std::cout << "Factors are : \n";
 
-        for (auto singleFactor : values[x])
+        for (auto singleFactor : values[c_index])
         {
             std::cout << " " << singleFactor << '\n';
         }
@@ -95,6 +135,8 @@ int main()
 {
 
     std::thread calculations(newFactor);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    
     std::thread output(printFactors);
 
     calculations.join();
