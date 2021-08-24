@@ -56,7 +56,7 @@ void newFactor()
 {  
 
     while (true) {
-        auto start = std::chrono::system_clock::now();
+        auto start = std::chrono::high_resolution_clock::now();
         if (bigNumber + 1 < std::time(0)) bigNumber = time(0);
         if (bigNumber >= std::time(0) + 18)
         {
@@ -74,8 +74,8 @@ void newFactor()
 
         ++bigNumber;
 
-        auto end = std::chrono::system_clock::now();
-        std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count();
+        auto end = std::chrono::high_resolution_clock::now();
+        std::cout << std::chrono::duration_cast<std::chrono::nanoseconds> (end - start).count()/1000000.;
         std::cout << " :: " << bigNumber << '\n';
     }
 }
