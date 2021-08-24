@@ -81,7 +81,7 @@ void printFactors() {
     while (true) {
         auto start = std::chrono::system_clock::now();
 
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
         auto c_time = std::time(0);
         
