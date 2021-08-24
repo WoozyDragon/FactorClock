@@ -55,7 +55,7 @@ void newFactor()
     while (true) {
         auto start = std::chrono::system_clock::now();
 
-        if (bigNumber >= std::time(0) + 15)
+        if (bigNumber >= std::time(0) + 18)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(2000));
             std::cout << "skip :: " << bigNumber;
@@ -82,7 +82,7 @@ void printFactors() {
         auto start = std::chrono::system_clock::now();
 
         auto c_time = std::time(0);
-        std::cout << "aaa  " << c_time << '\n';
+        
         
         int n = sizeof(times) / sizeof(times[0]);
         auto itr = std::find(times, times + n, c_time);
@@ -90,6 +90,7 @@ void printFactors() {
 
         if (itr == std::end(times))
         {
+            std::cout << "aaa  " << c_time << '\n';
             std::cout << "FAIL";
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             for (long long val : times)
@@ -104,7 +105,7 @@ void printFactors() {
         }
 
         //int c_index = std::distance(times, std::find(times, times + 20, c_time));
-        std::cout << "xxx  " << c_index << '\n';
+        //std::cout << "xxx  " << c_index << '\n';
 
         if (times[c_index] < 100)
         {
