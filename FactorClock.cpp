@@ -103,7 +103,7 @@ void printFactors() {
             std::cout << std::endl;
             continue;
             */
-            std::cout << "Reality is moving too fast... '\n'Please wait for the computer to catch up (5 secs) '\n'";
+            std::cout << "Reality is moving too fast... \nPlease wait for the computer to catch up (5 secs) \n";
             std::this_thread::sleep_for(std::chrono::seconds(5));
             
         }
