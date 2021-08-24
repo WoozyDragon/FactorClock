@@ -53,12 +53,12 @@ void newFactor()
 {  
 
     while (true) {
-        //auto start = std::chrono::system_clock::now();
-
+        auto start = std::chrono::system_clock::now();
+        if (bigNumber < std::time(0)) bigNumber = time(0);
         if (bigNumber >= std::time(0) + 18)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-            //std::cout << "skip :: " << bigNumber;
+            std::cout << "skip :: " << bigNumber;
             continue;
         }
 
@@ -71,15 +71,17 @@ void newFactor()
 
         ++bigNumber;
 
-        //auto end = std::chrono::system_clock::now();
-        //std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count();
-        //std::cout << " :: " << bigNumber << '\n';
+        auto end = std::chrono::system_clock::now();
+        std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count();
+        std::cout << " :: " << bigNumber << '\n';
     }
 }
 
 void printFactors() {
     while (true) {
         auto start = std::chrono::system_clock::now();
+
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
         auto c_time = std::time(0);
         
@@ -101,8 +103,8 @@ void printFactors() {
             std::cout << std::endl;
             continue;
             */
-            std::cout << "Reality is moving too fast... '\n'Please wait for the computer to catch up (15 secs) '\n'";
-            std::this_thread::sleep_for(std::chrono::seconds(15));
+            std::cout << "Reality is moving too fast... '\n'Please wait for the computer to catch up (5 secs) '\n'";
+            std::this_thread::sleep_for(std::chrono::seconds(5));
             
         }
         else {
@@ -122,6 +124,7 @@ void printFactors() {
 
         auto end = std::chrono::system_clock::now();
         std::this_thread::sleep_for(std::chrono::milliseconds(1000) - (end - start));
+        
     }
 }
 
