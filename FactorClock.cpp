@@ -26,7 +26,8 @@ std::vector<long long> factor(long long input)
         else
         {
             long long testNumber{ 3 };
-            while (true)
+            long long root{ static_cast<long long>(sqrt(input)) + 1};
+            while (testNumber < root)
             {
                 if ((input % testNumber) == 0)
                 {
@@ -39,6 +40,8 @@ std::vector<long long> factor(long long input)
                     testNumber += 2;
                 }
             }
+            factors.push_back(input);
+            input = 1;
         }
     }
     return factors;
@@ -54,7 +57,7 @@ void newFactor()
 
     while (true) {
         auto start = std::chrono::system_clock::now();
-        if (bigNumber < std::time(0)) bigNumber = time(0);
+        if (bigNumber + 1 < std::time(0)) bigNumber = time(0);
         if (bigNumber >= std::time(0) + 18)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(2000));
