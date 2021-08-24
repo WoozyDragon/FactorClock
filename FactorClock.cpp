@@ -53,12 +53,12 @@ void newFactor()
 {  
 
     while (true) {
-        auto start = std::chrono::system_clock::now();
+        //auto start = std::chrono::system_clock::now();
 
         if (bigNumber >= std::time(0) + 18)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-            std::cout << "skip :: " << bigNumber;
+            //std::cout << "skip :: " << bigNumber;
             continue;
         }
 
@@ -71,9 +71,9 @@ void newFactor()
 
         ++bigNumber;
 
-        auto end = std::chrono::system_clock::now();
-        std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count();
-        std::cout << " :: " << bigNumber << '\n';
+        //auto end = std::chrono::system_clock::now();
+        //std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count();
+        //std::cout << " :: " << bigNumber << '\n';
     }
 }
 
@@ -90,6 +90,7 @@ void printFactors() {
 
         if (itr == std::end(times))
         {
+            /*
             std::cout << "aaa  " << c_time << '\n';
             std::cout << "FAIL";
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -99,6 +100,10 @@ void printFactors() {
             }
             std::cout << std::endl;
             continue;
+            */
+            std::cout << "Reality is moving too fast... '\n'Please wait for the computer to catch up (15 secs) '\n'";
+            std::this_thread::sleep_for(std::chrono::seconds(15));
+            
         }
         else {
             c_index = std::distance(times, itr);;
@@ -106,16 +111,6 @@ void printFactors() {
 
         //int c_index = std::distance(times, std::find(times, times + 20, c_time));
         //std::cout << "xxx  " << c_index << '\n';
-
-        if (times[c_index] < 100)
-        {
-            for (long long val : times)
-            {
-                std::cout << val << '\n';
-            }
-            std::cout << std::endl;
-            //std::cout << values[x];
-        }
 
         std::cout << "Current Time is " << times[c_index] << '\n';
         std::cout << "Factors are : \n";
