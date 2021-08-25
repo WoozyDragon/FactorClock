@@ -10,8 +10,8 @@
 #include <ctime>
 #include <vector>
 #include <algorithm>
-
 #include <thread>
+#include <cmath>
 
 std::vector<long long> factor(long long input)
 {
@@ -26,7 +26,7 @@ std::vector<long long> factor(long long input)
         else
         {
             long long testNumber{ 3 };
-            long long root{ static_cast<long long>(sqrt(input)) + 1};
+            long long root{ static_cast<long long>(std::sqrt(input)) + 1};
             while (testNumber < root)
             {
                 if ((input % testNumber) == 0)
