@@ -11,7 +11,7 @@
 #include <vector>
 #include <algorithm>
 #include <thread>
-#include <cmath>
+
 
 std::vector<long long> factor(long long input)
 {
