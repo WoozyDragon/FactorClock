@@ -61,7 +61,7 @@ void newFactor()
         if (bigNumber >= std::time(0) + 18)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-            std::cout << "skip :: " << bigNumber;
+            //std::cout << "skip :: " << bigNumber << '\n';
             continue;
         }
 
@@ -75,8 +75,8 @@ void newFactor()
         ++bigNumber;
 
         auto end = std::chrono::high_resolution_clock::now();
-        std::cout << std::chrono::duration_cast<std::chrono::nanoseconds> (end - start).count()/1000000.;
-        std::cout << " :: " << bigNumber << '\n';
+        //std::cout << std::chrono::duration_cast<std::chrono::nanoseconds> (end - start).count()/1000000.;
+        //std::cout << " :: " << bigNumber << '\n';
     }
 }
 
