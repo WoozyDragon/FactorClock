@@ -1,5 +1,5 @@
 #include <Windows.h>
-#include "platform_common.cpp"
+#include "utils.cpp"
 
 typedef unsigned int u32;
 
@@ -59,6 +59,9 @@ LRESULT CALLBACK window_callback(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wPa
 	}
 	return result;
 }
+
+#include "platform_common.cpp"
+#include "renderer.cpp"
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine, int nShowCmd) {
 	//create window class
