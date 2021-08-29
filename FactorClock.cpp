@@ -81,10 +81,11 @@ void newFactor()
 }
 
 void printFactors() {
+    std::string output{};
     while (true) {
         auto start = std::chrono::system_clock::now();
 
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        //std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
         auto c_time = std::time(0);
         
@@ -106,7 +107,7 @@ void printFactors() {
             std::cout << std::endl;
             continue;
             */
-            std::cout << "Reality is moving too fast... \nPlease wait for the computer to catch up (5 secs) \n";
+            output.append("Reality is moving too fast... \nPlease wait for the computer to catch up (5 secs) \n");
             std::this_thread::sleep_for(std::chrono::seconds(5));
             
         }
@@ -117,12 +118,12 @@ void printFactors() {
         //int c_index = std::distance(times, std::find(times, times + 20, c_time));
         //std::cout << "xxx  " << c_index << '\n';
 
-        std::cout << "Current Time is " << times[c_index] << '\n';
-        std::cout << "Factors are : \n";
+        output.append("Current Time is " + times[c_index] + '\n');
+        output.append("Factors are : \n");
 
         for (auto singleFactor : values[c_index])
         {
-            std::cout << " " << singleFactor << '\n';
+            output.append(" " + singleFactor + '\n');
         }
 
         auto end = std::chrono::system_clock::now();
