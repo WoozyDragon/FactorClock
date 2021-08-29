@@ -4,13 +4,7 @@ struct ButtonState {
 };
 
 enum ButtonsEnum {
-	BUTTON_UP,
-	BUTTON_DOWN,
-	BUTTON_W,
-	BUTTON_S,
-	BUTTON_LEFT,
-	BUTTON_RIGHT,
-	BUTTON_ENTER,
+	BUTTON_CTRL,
 
 	BUTTON_COUNT
 };

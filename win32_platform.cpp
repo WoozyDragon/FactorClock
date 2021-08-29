@@ -1,6 +1,8 @@
 #include <Windows.h>
 #include "utils.cpp"
 
+#include <gdiplusheaders.h>
+
 typedef unsigned int u32;
 
 struct RenderState {
@@ -62,6 +64,7 @@ LRESULT CALLBACK window_callback(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wPa
 
 #include "platform_common.cpp"
 #include "renderer.cpp"
+#include "FactorClock.cpp"
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine, int nShowCmd) {
 	//create window class
@@ -78,6 +81,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine, int nS
 	HWND window = CreateWindow(window_class.lpszClassName, L"Factor Clock", WS_OVERLAPPEDWINDOW | WS_VISIBLE,
 		CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
 	HDC hdc = GetDC(window);
+
+	//start the calculations thread
+	//std::thread calculations(newFactor);
 
 	while (running) {
 		//get inputs
@@ -101,6 +107,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine, int nS
 		}
 
 
+		//handle messages
 		while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
 				switch (message.message)
 				{
@@ -117,13 +124,7 @@ case vk:{\
 
 					switch (vk_code)
 					{
-						processButton(BUTTON_UP, VK_UP);
-						processButton(BUTTON_DOWN, VK_DOWN);
-						processButton(BUTTON_W, 'W');
-						processButton(BUTTON_S, 'S');
-						processButton(BUTTON_LEFT, VK_LEFT);
-						processButton(BUTTON_RIGHT, VK_RIGHT);
-						processButton(BUTTON_ENTER, VK_RETURN);
+						processButton(BUTTON_CTRL, VK_CONTROL);
 
 					case 'Q':
 						running = false;
@@ -138,5 +139,29 @@ case vk:{\
 			}
 
 		}
+
+		//display 
+		u32* pixel = (u32*)renderstate.memory;
+		for (int y = 0; y < renderstate.height; ++y) {
+			for (int x = 0; x < renderstate.width; ++x) {
+				*pixel++ = 0x323232;
+			}
+		}
+
+		RECT rc;
+		rc.top = 30;
+		rc.bottom = renderstate.height - 60;
+		rc.left = 30;
+		rc.right = renderstate.width - 60;
+
+		//LPCWSTR text = L"My First Window";
+		//Font font1;
+
+		//DrawString("My First Window", -1, )
+		
+		
+		StretchDIBits(hdc, 0, 0, renderstate.width, renderstate.height,
+			0, 0, renderstate.width, renderstate.height, renderstate.memory,
+			&renderstate.bitmapinfo, DIB_RGB_COLORS, SRCCOPY);
 	}
 }
